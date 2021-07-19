@@ -28,7 +28,7 @@
                        '</td><td style="white-space: nowrap;">' +
                        '<audio src="' + v + '" controls>' + 
                        '</td></tr>';
-                } else
+                } else {
                   tr = tr + 
                        '<tr><td style="white-space: nowrap;">' + 
                        k + 
