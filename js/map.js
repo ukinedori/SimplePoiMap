@@ -19,20 +19,30 @@
           function() {
             tr = '<table border>';
             Object.keys(feature.properties).forEach( function(k){
+              var v = feature.properties[k];
               if(k == "sound") {
-                tr = tr + 
-                     '<tr><td style="white-space: nowrap;">' + 
-                     k + 
-                     '</td><td style="white-space: nowrap;">' +
-                     '<a href="' + feature.properties[k] + '" target="_bank">' + 
-                     feature.properties[k] +
-                     '</a></td></tr>';
+                if( typeof(v) == 'string' && v.endsWith('.mp3') ) {
+                  tr = tr + 
+                       '<tr><td style="white-space: nowrap;">' + 
+                       k + 
+                       '</td><td style="white-space: nowrap;">' +
+                       '<audio src="' + v + '" controls>' + 
+                       '</td></tr>';
+                } else
+                  tr = tr + 
+                       '<tr><td style="white-space: nowrap;">' + 
+                       k + 
+                       '</td><td style="white-space: nowrap;">' +
+                       '<a href="' + v + '" target="_bank">' + 
+                       v +
+                       '</a></td></tr>';
+                }
               } else {
                 tr = tr + 
                      '<tr><td style="white-space: nowrap;">' + 
                      k + 
                      '</td><td style="white-space: nowrap;">' +
-                     feature.properties[k] + 
+                     v + 
                      '</td></tr>';
               }
             });
