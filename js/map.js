@@ -24,10 +24,9 @@
                      '<tr><td style="white-space: nowrap;">' + 
                      k + 
                      '</td><td style="white-space: nowrap;">' +
-                     '<audio src="' +
-                     feature.properties[k] + 
-                     '" controls></audio>' +
-                     '</td></tr>';
+                     '<a href="' + feature.properties[k] + '" target="_bank">' + 
+                     feature.properties[k] +
+                     '</a></td></tr>';
               } else {
                 tr = tr + 
                      '<tr><td style="white-space: nowrap;">' + 
