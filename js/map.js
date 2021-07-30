@@ -31,7 +31,7 @@
     });
     console.log(idw_data2);
     var idwLayer = L.idwLayer(idw_data2, 
-      {opacity: 0.3, cellSize: 10, exp: 2}
+      {opacity: 0.5, cellSize: 10, exp: 3, gradient:{0:'blue', 0.5:'yellowgreen', 1:'red'} }
     ).addTo(map);
 
     var poiLayer = L.geoJson(data, {
