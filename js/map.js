@@ -12,6 +12,28 @@
   layer.addTo(map);
 
   $.getJSON( 'poi.geojson', function(data) {
+    var idw_data = [];
+    var idw_data2 = [];
+    var max = 0;
+    var min = 100;
+    data.features.forEach(function(feat){
+      if(max < feat.properties.average) {
+        max = feat.properties.average;
+      }
+      if(min > feat.properties.average) {
+        min = feat.properties.average;
+      }
+      idw_data.push([feat.geometry.coordinates[1], feat.geometry.coordinates[0], feat.properties.average]);
+    });
+    var range = max - min;
+    idw_data.forEach(function(idw){
+      idw_data2.push([idw[0], idw[1], (idw[2]-min)/range]);
+    });
+    console.log(idw_data2);
+    var idwLayer = L.idwLayer(idw_data2, 
+      {opacity: 0.3, cellSize: 10, exp: 2}
+    ).addTo(map);
+
     var poiLayer = L.geoJson(data, {
       pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
